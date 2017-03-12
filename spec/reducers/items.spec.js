@@ -69,4 +69,36 @@ describe('items reducer', () => {
 
     expect(items(previousState, addItemToCartAction)).toEqual(expectedState)
   })
+
+  it('accepts a CHECKOUT action', () => {
+    const item = {
+      description: "Proident adipisicing excepteur non ad enim deserunt.",
+      color: "yellow",
+      image: "http://placehold.it/100x100",
+      price: "$1,003.45",
+      stock: {
+        remaining: 23
+      },
+      _id: "571762bfec3aac46241599e0"
+    };
+    const previousState = {
+      items: [item],
+      cart: [{
+        id: item._id,
+        amount: 1,
+        description: item.description,
+        price: item.price,
+      }]
+    }
+    const checkoutAction = {
+      type: 'CHECKOUT',
+    }
+
+    const expectedState = {
+      items: [item],
+      cart: []
+    }
+
+    expect(items(previousState, checkoutAction)).toEqual(expectedState)
+  })
 });

@@ -1,5 +1,6 @@
 export const SET_ITEMS = 'SET_ITEMS';
 export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART';
+export const CHECKOUT = 'CHECKOUT';
 
 export const setItems = items => ({
   type: SET_ITEMS,
@@ -17,3 +18,12 @@ export const addItemToCart = (id, amount) => ({
   id,
   amount,
 });
+
+export const checkout = () => ({
+  type: CHECKOUT
+});
+
+export const checkoutWithAlert = () => dispatch => {
+  alert('Success!')
+  dispatch(checkout())
+}

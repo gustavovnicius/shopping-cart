@@ -14,7 +14,7 @@ import {
   Flex,
 } from 'reflexbox';
 
-function ShoppingCart({ cart }) {
+function ShoppingCart({ cart, checkout }) {
   return (
     <Container>
       <Panel>
@@ -34,7 +34,7 @@ function ShoppingCart({ cart }) {
         }
         <PanelFooter>
           <Space auto />
-          <Button>
+          <Button onClick={checkout}>
             Checkout
           </Button>
         </PanelFooter>
@@ -45,6 +45,7 @@ function ShoppingCart({ cart }) {
 
 ShoppingCart.propTypes = {
   cart: React.PropTypes.array.isRequired,
+  checkout: React.PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;
