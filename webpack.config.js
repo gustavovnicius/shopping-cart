@@ -1,11 +1,11 @@
 var path = require('path');
 
 var config = {
-  entry: [
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:8080',
-    path.resolve(__dirname, 'app/index.js')
-  ],
+  entry: {
+    app: [
+      path.resolve(__dirname, 'app/index.js')
+    ]
+  },
   resolve:{
     modules: ['app', 'node_modules'],
     extensions: ['*', '.js', '.jsx']
