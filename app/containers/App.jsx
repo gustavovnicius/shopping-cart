@@ -1,17 +1,56 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import reducers from 'reducers';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchItems } from 'actions/items';
+import {
+  HashRouter as Router,
+  Route,
+  Link,
+} from 'react-router-dom';
+import {
+  Toolbar,
+  NavItem,
+  Space,
+} from 'rebass';
+import ConnectedItemsList from 'containers/ConnectedItemsList';
+import ConnectedDetailedItem from 'containers/ConnectedDetailedItem';
+import ShoppingCart from 'components/ShoppingCart';
 
-const initialState = {};
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchItems();
+  }
 
-const store = createStore(reducers, initialState, applyMiddleware(thunk));
+  render() {
+    return (
+      <Router>
+        <div>
+          <Toolbar>
+            <NavItem is={Link} to="/">
+              Items
+            </NavItem>
+            <Space auto x={1} />
+            <NavItem is={Link} to="/cart">
+              ShoppingCart
+            </NavItem>
+          </Toolbar>
+          <Route exact path="/" component={ConnectedItemsList} />
+          <Route exact path="/items/:id" component={ConnectedDetailedItem} />
+          <Route exact path="/cart" component={ShoppingCart} />
+        </div>
+      </Router>
+    );
+  }
+}
 
-const App = () => (
-  <Provider store={store}>
-    <div />
-  </Provider>
-  );
+App.propTypes = {
+  fetchItems: React.PropTypes.func.isRequired,
+};
 
-export default App;
+export const mapStateToProps = () => ({});
+export const mapDispatchToProps = dispatch => (
+  {
+    fetchItems: () => dispatch(fetchItems()),
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
