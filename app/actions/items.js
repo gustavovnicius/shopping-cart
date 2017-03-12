@@ -1,4 +1,5 @@
 export const SET_ITEMS = 'SET_ITEMS';
+export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART';
 
 export const setItems = items => ({
   type: SET_ITEMS,
@@ -10,3 +11,9 @@ export const fetchItems = () => dispatch => (
     .then(response => response.json())
     .then(json => dispatch(setItems(json)))
 );
+
+export const addItemToCart = (id, amount) => ({
+  type: ADD_ITEM_TO_CART,
+  id,
+  amount,
+});

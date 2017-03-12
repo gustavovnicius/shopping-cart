@@ -9,6 +9,18 @@ describe('Item actions', () => {
       }
 
       expect(itemsActions.setItems([])).toEqual(expected);
-    })
-  })
+    });
+  });
+
+  describe('addItemToCart', () => {
+    it('should return a addItemToCart action', () => {
+      const expected = {
+        type: itemsActions.ADD_ITEM_TO_CART,
+        id: 1,
+        amount: 10,
+      }
+
+      expect(itemsActions.addItemToCart(1, 10)).toEqual(expected);
+    });
+  });
 });

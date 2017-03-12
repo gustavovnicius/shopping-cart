@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'rebass';
 import { Flex } from 'reflexbox';
-import Item from 'components/Item';
+import ConnectedItem from 'containers/ConnectedItem';
 
 function ItemsList({ items }) {
   return (
@@ -14,7 +14,7 @@ function ItemsList({ items }) {
       >
         {
           items.map(item => (
-            <Item key={item._id} {...item} />
+            <ConnectedItem key={item._id} {...item} />
             ))
         }
       </Flex>

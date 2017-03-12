@@ -33,4 +33,40 @@ describe('items reducer', () => {
 
     expect(items(undefined, setItemsAction)).toEqual(expected)
   })
+
+  it('accepts a ADD_ITEM_TO_CART action', () => {
+    const item = {
+      description: "Proident adipisicing excepteur non ad enim deserunt.",
+      color: "yellow",
+      image: "http://placehold.it/100x100",
+      price: "$1,003.45",
+      stock: {
+        remaining: 23
+      },
+      _id: "571762bfec3aac46241599e0"
+    };
+    const previousState = {
+      items: [
+        item
+      ],
+      cart: []
+    }
+    const addItemToCartAction = {
+      type: 'ADD_ITEM_TO_CART',
+      id: item._id,
+      amount: 1
+    }
+
+    const expectedState = {
+      items: [{ ...item, stock: { remaining: item.stock.remaining - 1 }}],
+      cart: [{
+        id: item._id,
+        amount: 1,
+        description: item.description,
+        price: item.price,
+      }]
+    }
+
+    expect(items(previousState, addItemToCartAction)).toEqual(expectedState)
+  })
 });

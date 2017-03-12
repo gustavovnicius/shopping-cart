@@ -14,7 +14,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-function Item({ _id, price }) {
+function Item({ _id, price, addToCart }) {
   return (
     <Box m={2}>
       <Card rounded width={256}>
@@ -36,6 +36,7 @@ function Item({ _id, price }) {
             inverted
             rounded
             big
+            onClick={addToCart}
           >
             Add to cart
           </Button>
@@ -48,6 +49,7 @@ function Item({ _id, price }) {
 Item.propTypes = {
   _id: React.PropTypes.string.isRequired,
   price: React.PropTypes.string.isRequired,
+  addToCart: React.PropTypes.func.isRequired,
 };
 
 export default Item;

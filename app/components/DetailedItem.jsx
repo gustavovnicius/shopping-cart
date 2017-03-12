@@ -8,8 +8,6 @@ import {
   Container,
   Button,
   Divider,
-  ButtonCircle,
-  Input,
   Heading,
 } from 'rebass';
 import {
@@ -17,7 +15,7 @@ import {
   Box,
 } from 'reflexbox';
 
-function DetailedItem({ item }) {
+function DetailedItem({ item, addToCart }) {
   return (
     <Container>
       <Flex
@@ -48,20 +46,8 @@ function DetailedItem({ item }) {
             <Heading big>
               {item.price}
             </Heading>
-            <Flex align="center" justify="center">
-              <ButtonCircle>-</ButtonCircle>
-              <Input
-                label=""
-                name="input_example"
-                placeholder=""
-                rounded
-                type="number"
-                style={{ margin: '0px' }}
-              />
-              <ButtonCircle>+</ButtonCircle>
-            </Flex>
           </Box>
-          <Button big style={{ width: '300px' }}>
+          <Button big style={{ width: '300px' }} onClick={addToCart}>
             Add to cart
           </Button>
         </Box>
@@ -80,6 +66,7 @@ DetailedItem.propTypes = {
       remaining: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default DetailedItem;

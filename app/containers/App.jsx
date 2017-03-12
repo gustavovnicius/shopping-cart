@@ -13,7 +13,7 @@ import {
 } from 'rebass';
 import ConnectedItemsList from 'containers/ConnectedItemsList';
 import ConnectedDetailedItem from 'containers/ConnectedDetailedItem';
-import ShoppingCart from 'components/ShoppingCart';
+import ConnectedShoppingCart from 'containers/ConnectedShoppingCart';
 
 class App extends Component {
   componentDidMount() {
@@ -35,7 +35,7 @@ class App extends Component {
           </Toolbar>
           <Route exact path="/" component={ConnectedItemsList} />
           <Route exact path="/items/:id" component={ConnectedDetailedItem} />
-          <Route exact path="/cart" component={ShoppingCart} />
+          <Route exact path="/cart" component={ConnectedShoppingCart} />
         </div>
       </Router>
     );

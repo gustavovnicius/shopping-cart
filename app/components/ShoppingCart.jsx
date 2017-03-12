@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Container,
   Panel,
@@ -6,61 +6,45 @@ import {
   Text,
   Space,
   Divider,
+  CardImage,
+  Card,
+  Button,
 } from 'rebass';
 import {
   Flex,
 } from 'reflexbox';
 
-export default class ShoppingCart extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      items: [
+function ShoppingCart({ cart }) {
+  return (
+    <Container>
+      <Panel>
         {
-          id: 1,
-          quantity: 10,
-          price: 100,
-        },
-        {
-          id: 2,
-          quantity: 5,
-          price: 100,
-        },
-        {
-          id: 3,
-          quantity: 6,
-          price: 100,
-        },
-        {
-          id: 4,
-          quantity: 7,
-          price: 100,
-        },
-      ],
-    };
-  }
-  render() {
-    return (
-      <Container>
-        <Panel>
-          {
-            this.state.items.map(p => (
-              <Flex key={p.id}>
-                <Text>{p.id}</Text>
-                <Space auto />
-                <Text>{p.price}</Text>
-                <Divider />
-              </Flex>
-              ))
-          }
-          <PanelFooter>
-            <Text>Total</Text>
-            <Space auto />
-            <Text>1000</Text>
-          </PanelFooter>
-        </Panel>
-      </Container>
-    );
-  }
+          cart.map((p, index) => (
+            <Flex key={index}>
+              <Text>{p.amount}</Text>
+              <Space />
+              <Card rounded width={100}>
+                <CardImage src="http://placehold.it/100/08e/fff" />
+              </Card>
+              <Space auto />
+              <Text>{p.price}</Text>
+              <Divider />
+            </Flex>
+            ))
+        }
+        <PanelFooter>
+          <Space auto />
+          <Button>
+            Checkout
+          </Button>
+        </PanelFooter>
+      </Panel>
+    </Container>
+  );
 }
+
+ShoppingCart.propTypes = {
+  cart: React.PropTypes.array.isRequired,
+};
+
+export default ShoppingCart;
