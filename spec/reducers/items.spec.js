@@ -4,7 +4,7 @@ describe('items reducer', () => {
   it('define an empty items and cart list by default', () => {
     const dummyAction = { type: 'DUMMY' }
     const expected = {
-      items: [],
+      items: {},
       cart: []
     }
 
@@ -27,7 +27,7 @@ describe('items reducer', () => {
       data: [item]
     }
     const expected = {
-      items: [item],
+      items: { "571762bfec3aac46241599e0": item},
       cart: []
     }
 
@@ -46,9 +46,7 @@ describe('items reducer', () => {
       _id: "571762bfec3aac46241599e0"
     };
     const previousState = {
-      items: [
-        item
-      ],
+      items: {"571762bfec3aac46241599e0": item},
       cart: []
     }
     const addItemToCartAction = {
@@ -58,7 +56,7 @@ describe('items reducer', () => {
     }
 
     const expectedState = {
-      items: [{ ...item, stock: { remaining: item.stock.remaining - 1 }}],
+      items: {"571762bfec3aac46241599e0": {...item, stock: { remaining: item.stock.remaining - 1 }}},
       cart: [{
         id: item._id,
         amount: 1,
@@ -82,7 +80,7 @@ describe('items reducer', () => {
       _id: "571762bfec3aac46241599e0"
     };
     const previousState = {
-      items: [item],
+      items: {"571762bfec3aac46241599e0": item},
       cart: [{
         id: item._id,
         amount: 1,
@@ -95,7 +93,7 @@ describe('items reducer', () => {
     }
 
     const expectedState = {
-      items: [item],
+      items: {"571762bfec3aac46241599e0": item},
       cart: []
     }
 

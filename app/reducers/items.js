@@ -6,7 +6,7 @@ import {
 import _ from 'lodash';
 
 const initialState = {
-  items: [],
+  items: {},
   cart: [],
 };
 
@@ -15,16 +15,26 @@ export default function items(state = initialState, action) {
     case SET_ITEMS:
       return {
         ...state,
-        items: action.data,
+        items: action.data.map(i => {
+          let item = {}
+          item[i._id] = {...i}
+          return item;
+        }).reduce((i, acc) => ({ ...acc, ...i }), {})
       };
     case ADD_ITEM_TO_CART:
-      const item = _.find(state.items, i => i._id === action.id);
-      item.stock = {
-        remaining: item.stock.remaining - action.amount,
-      };
+      const items = state.items;
+      const item = items[action.id];
+      const newItem = {
+        ...item,
+        stock: {
+          remaining: item.stock.remaining - action.amount,
+        }
+      }
+      items[action.id] = newItem;
 
       return {
         ...state,
+        items: items,
         cart: _.concat(state.cart, [{
           id: item._id,
           description: item.description,

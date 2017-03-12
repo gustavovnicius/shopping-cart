@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from 'rebass';
 import { Flex } from 'reflexbox';
+import _ from 'lodash';
 import ConnectedItem from 'containers/ConnectedItem';
 
 function ItemsList({ items }) {
@@ -13,7 +14,7 @@ function ItemsList({ items }) {
         wrap
       >
         {
-          items.map(item => (
+          Object.values(items).map(item => (
             <ConnectedItem key={item._id} {...item} />
             ))
         }
@@ -23,7 +24,7 @@ function ItemsList({ items }) {
 }
 
 ItemsList.propTypes = {
-  items: React.PropTypes.array.isRequired,
+  items: React.PropTypes.object.isRequired,
 };
 
 export default ItemsList;
