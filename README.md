@@ -3,7 +3,8 @@ Shopping Cart
 
 To create the app I used my own react/redux [boilerplate](https://github.com/gustavovnicius/react-redux-boilerplate). I started it from the principle that it should be simple and as much explicit as possible (because there is a lot of complicated boilerplates out there). There is some explanations about the tools and libs that I used on the boilerplate repo.
 
-You can check out the application [here](https://gustavo.keybase.pub/). I used the keybase.io file system to serve the application (just copied the files to my directory).
+I tried to deploy the application [here](https://gustavo.keybase.pub/). I used the keybase.io file system to serve the application (just copied the files to my directory). But, since the API is served over HTTP and keybase uses HTTPS it didn't worked =/
+To see the application running you will have to `npm start` it.
 
 Comments
 --------
